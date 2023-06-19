@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { FilterForm } from "../contacts/Contacts.styled";
 
 function Filter({ setFilter }) {
+  const [filterValue, setFilterValue] = useState("");
+
   const handleFilterChange = (event) => {
-    setFilter(event.target.value);
+    const value = event.target.value;
+    setFilterValue(value);
+    setFilter(value);
   };
 
   return (
@@ -12,6 +16,7 @@ function Filter({ setFilter }) {
       <label style={{ display: "flex", flexDirection: "column" }}>
         <span style={{ marginBottom: "10px" }}>Find contacts by name</span>
         <input
+          value={filterValue}
           onChange={handleFilterChange}
           type="text"
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
